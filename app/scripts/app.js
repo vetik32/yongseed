@@ -12,19 +12,22 @@ angular
   .module('yoAngularSeedApp', [
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'yoAngularSeedApp.view1',
+    'yoAngularSeedApp.view2'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+
+  .config(['$routeProvider', function($routeProvider) {
+    $routeProvider.otherwise({redirectTo: '/view1'});
+  }])
+
+  .controller('HeaderController', ['$scope', '$location', function($scope, $location) {
+    $scope.isActive = function(viewLocation) {
+      var active = (viewLocation.indexOf($location.path()) === 0);
+      return active;
+    };
+  }]);
+
+angular.element(document).ready(function() {
+  angular.bootstrap(document, ['yoAngularSeedApp']);
+});
