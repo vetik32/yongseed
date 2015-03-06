@@ -25,11 +25,11 @@ describe('yoAngularSeedApp.view1 module', function() {
 
   describe('view1 controller', function(){
 
-    it('should ....', inject(function($injector) {
+    it('should be defined', function() {
       //spec body
-      var view1Ctrl = $injector.get('View1Ctrl');
+      var view1Ctrl = createController();
       expect(view1Ctrl).toBeDefined();
-    }));
+    });
 
   });
 });
