@@ -26,10 +26,9 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/angular-mocks/angular-mocks.js',
+      'bower_components/underscore/underscore-min.js',
       // endbower
-      'app/scripts/**/*.js',
-      'test/mock/**/*.js',
-      'test/spec/**/*.js'
+      'app/scripts/boardgame/**/*.js'
     ],
 
     // list of files / patterns to exclude
@@ -54,18 +53,29 @@ module.exports = function(config) {
     // Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
+      'karma-coverage',
       'karma-jasmine'
     ],
+
+
+    preprocessors: {
+      // source files, that you wanna generate coverage for
+      // do not include tests or libraries
+      // (these files will be instrumented by Istanbul)
+      'app/scripts/boardgame/!(*spec).js': ['coverage']
+    },
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
     singleRun: false,
 
+    reporters: ['dots', 'coverage'],
+
     colors: true,
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_INFO
 
     // Uncomment the following lines if you are using grunt's server to run the tests
     // proxies: {

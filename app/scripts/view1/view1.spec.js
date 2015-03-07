@@ -1,6 +1,6 @@
 'use strict';
 
-describe('yoAngularSeedApp.view1 module', function() {
+xdescribe('yoAngularSeedApp.view1 module', function() {
 
   var $scope, createController;
 
